@@ -1,24 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {useSelector, useDispatch} from 'react-redux'
 
 function App() {
+
+  let countNum = useSelector(state=>state.countNum)
+  
+  let dispatch = useDispatch();
+  let incrementNumber = ()=>{
+    dispatch ({ type: 'INCREMENT', payload:3})
+  }
+  let decrementNumber = ()=>{
+    dispatch ({type:'DECREMENT',payload:3})
+  }
+  let reset = ()=>{
+    dispatch({type:'RESET',payload:3})
+  }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p> count: {countNum} </p>
+      <button onClick={()=>incrementNumber()}> INCREMENT </button>
+      <button onClick={()=>decrementNumber()}> DECREMENT </button>
+      <button onClick={()=>reset()}> RESET </button>
+      <input />
+      <div > boxes </div>
     </div>
   );
 }
